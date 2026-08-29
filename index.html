@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قط أغراض – نقل وتركيب أثاث احترافي داخل المنزل</title>
+    <meta name="description" content="خدمات فك وتركيب وتغليف ونقل الأثاث داخل المنزل. اتصل الآن: 97975970">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy:     #0f172a;
+            --navy-2:   #1e293b;
+            --blue:     #1a56db;
+            --blue-dk:  #1648c0;
+            --blue-lt:  #3b82f6;
+            --blue-pale:#eff6ff;
+            --gold:     #f59e0b;
+            --wa:       #25D366;
+            --white:    #ffffff;
+            --gray-50:  #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-600: #475569;
+            --radius:   18px;
+            --shadow:   0 10px 40px rgba(0,0,0,.1);
+            --shadow-lg:0 24px 64px rgba(0,0,0,.15);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--white);
+            color: var(--navy-2);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            width: min(1200px, 100%);
+            margin-inline: auto;
+            padding-inline: clamp(16px, 4vw, 48px);
+        }
+
+        /* ─── Labels & Titles ─── */
+        .section-label {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--blue-pale); color: var(--blue);
+            font-weight: 700; font-size: .88rem;
+            padding: 6px 16px; border-radius: 50px;
+            margin-bottom: 14px;
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.7rem);
+            font-weight: 900; color: var(--navy);
+            line-height: 1.25; margin-bottom: 14px;
+        }
+        .section-sub { font-size: 1rem; color: var(--gray-600); max-width: 560px; }
+
+        /* ─── Buttons ─── */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 10px; font-family: 'Cairo', sans-serif;
+            font-weight: 800; font-size: 1rem;
+            padding: 14px 30px; border-radius: 50px;
+            border: none; cursor: pointer;
+            transition: all .25s ease; white-space: nowrap;
+        }
+        .btn-primary { background: var(--blue); color: #fff; box-shadow: 0 8px 24px rgba(26,86,219,.35); }
+        .btn-primary:hover { background: var(--blue-dk); transform: translateY(-2px); box-shadow: 0 14px 36px rgba(26,86,219,.45); }
+        .btn-wa { background: var(--wa); color: #fff; box-shadow: 0 8px 24px rgba(37,211,102,.35); }
+        .btn-wa:hover { background: #1ebd5c; transform: translateY(-2px); box-shadow: 0 14px 36px rgba(37,211,102,.45); }
+        .btn-ghost { background: rgba(255,255,255,.12); color: #fff; border: 2px solid rgba(255,255,255,.5); }
+        .btn-ghost:hover { background: rgba(255,255,255,.22); border-color: #fff; }
+
+        /* ─── Reveal Animations ─── */
+        .reveal {
+            opacity: 0; transform: translateY(36px);
+            transition: opacity .65s ease, transform .65s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-l { transform: translateX(-36px); }
+        .reveal-r { transform: translateX(36px); }
+        .reveal-l.visible, .reveal-r.visible { transform: translateX(0); }
+        .d1 { transition-delay: .1s; }
+        .d2 { transition-delay: .2s; }
+        .d3 { transition-delay: .3s; }
+        .d4 { transition-delay: .4s; }
+
+        /* ══════════════════════════
+           NAVBAR
+        ══════════════════════════ */
+        .navbar {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255,255,255,.94);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0,0,0,.06);
+            transition: box-shadow .3s;
+        }
+        .navbar.scrolled { box-shadow: 0 4px 28px rgba(0,0,0,.09); }
+        .navbar-inner {
+            display: flex; align-items: center;
+            justify-content: space-between; height: 70px;
+        }
+        .logo {
+            display: flex; align-items: center; gap: 10px;
+            font-weight: 900; font-size: 1.25rem; color: var(--navy);
+        }
+        .logo-icon {
+            width: 42px; height: 42px; border-radius: 12px;
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-lt) 100%);
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 1.1rem;
+            box-shadow: 0 4px 14px rgba(26,86,219,.35);
+        }
+        .nav-btns { display: flex; gap: 10px; }
+        .nav-btn {
+            display: flex; align-items: center; gap: 8px;
+            font-weight: 700; font-size: .9rem;
+            padding: 9px 18px; border-radius: 50px;
+            transition: all .2s;
+        }
+        .nav-call { background: var(--blue-pale); color: var(--blue); }
+        .nav-call:hover { background: var(--blue); color: #fff; }
+        .nav-wa-btn { background: #e8fdf2; color: var(--wa); }
+        .nav-wa-btn:hover { background: var(--wa); color: #fff; }
+
+        @media(max-width:580px){
+            .nav-btn span { display: none; }
+            .nav-btn { padding: 10px 14px; }
+        }
+
+        /* ══════════════════════════
+           HERO
+        ══════════════════════════ */
+        .hero {
+            position: relative;
+            min-height: clamp(520px, 92vh, 820px);
+            display: flex; align-items: center;
+            overflow: hidden;
+            background: linear-gradient(145deg, #081330 0%, #0f2060 40%, #1a3a8f 70%, #1d56c9 100%);
+        }
+
+        /* decorative blobs */
+        .hero-blob {
+            position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;
+        }
+        .blob-1 {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(59,130,246,.25) 0%, transparent 70%);
+            top: -150px; left: -100px;
+        }
+        .blob-2 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(245,158,11,.12) 0%, transparent 70%);
+            bottom: -100px; right: 10%;
+        }
+        /* grid pattern */
+        .hero-grid {
+            position: absolute; inset: 0; pointer-events: none;
+            background-image:
+                linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .hero-content { position: relative; z-index: 2; padding-block: 110px 90px; }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,.2);
+            color: #fff; font-weight: 600; font-size: .88rem;
+            padding: 8px 20px; border-radius: 50px; margin-bottom: 24px;
+        }
+        .hero-badge .dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 8px var(--gold);
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%,100% { opacity: 1; transform: scale(1); }
+            50%      { opacity: .6; transform: scale(1.4); }
+        }
+
+        .hero-title {
+            font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+            font-weight: 900; color: #fff; line-height: 1.2; margin-bottom: 20px;
+        }
+        .hero-title .highlight {
+            background: linear-gradient(90deg, #7bc8ff, #a5f3fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            color: rgba(255,255,255,.82); max-width: 540px; margin-bottom: 40px;
+        }
+
+        .hero-btns { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 56px; }
+
+        .hero-stats {
+            display: flex; flex-wrap: wrap; gap: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,.15);
+        }
+        .hero-stat-num { font-size: 2.2rem; font-weight: 900; color: #fff; line-height: 1; }
+        .hero-stat-num em { color: var(--gold); font-style: normal; }
+        .hero-stat-lbl { font-size: .85rem; color: rgba(255,255,255,.6); font-weight: 500; margin-top: 4px; }
+
+        /* floating phone card */
+        .hero-card {
+            position: absolute; bottom: 32px; left: 32px; z-index: 3;
+            background: rgba(255,255,255,.1);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,.2);
+            border-radius: 16px;
+            padding: 18px 22px;
+            display: flex; align-items: center; gap: 14px;
+        }
+        .hero-card-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            background: var(--wa); color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 16px rgba(37,211,102,.4);
+        }
+        .hero-card strong { display: block; color: #fff; font-size: 1.05rem; font-weight: 800; }
+        .hero-card span { font-size: .82rem; color: rgba(255,255,255,.65); }
+
+        @media(max-width:640px){
+            .hero-card { display: none; }
+            .hero-btns { flex-direction: column; }
+            .hero-stats { gap: 22px; }
+        }
+
+        /* ══════════════════════════
+           SERVICES
+        ══════════════════════════ */
+        .services-section { padding-block: 100px; background: var(--gray-50); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px; margin-top: 56px;
+        }
+
+        .service-card {
+            border-radius: var(--radius); overflow: hidden;
+            background: #fff;
+            box-shadow: 0 2px 16px rgba(0,0,0,.06);
+            transition: transform .3s, box-shadow .3s;
+            display: flex; flex-direction: column;
+        }
+        .service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+
+        /* Illustrated header instead of img */
+        .service-visual {
+            height: 180px; position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .sv-1 { background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%); }
+        .sv-2 { background: linear-gradient(135deg, #065f46 0%, #059669 100%); }
+        .sv-3 { background: linear-gradient(135deg, #7c2d12 0%, #ea580c 100%); }
+        .sv-4 { background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%); }
+
+        .service-visual-icon {
+            font-size: 5rem; color: rgba(255,255,255,.2);
+            position: absolute; bottom: -10px; left: 20px;
+            transition: transform .4s;
+        }
+        .service-card:hover .service-visual-icon { transform: scale(1.1) rotate(-6deg); }
+
+        .service-visual-main {
+            font-size: 3.5rem; color: rgba(255,255,255,.95);
+            position: relative; z-index: 1;
+            filter: drop-shadow(0 4px 16px rgba(0,0,0,.3));
+            transition: transform .3s;
+        }
+        .service-card:hover .service-visual-main { transform: scale(1.12); }
+
+        .service-tag {
+            position: absolute; top: 14px; right: 14px;
+            background: rgba(255,255,255,.18);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,255,255,.25);
+            color: #fff; font-size: .75rem; font-weight: 700;
+            padding: 4px 12px; border-radius: 50px;
+        }
+
+        .service-body { padding: 24px; flex: 1; }
+        .service-title { font-size: 1.15rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+        .service-desc { font-size: .92rem; color: var(--gray-600); line-height: 1.6; }
+
+        /* ══════════════════════════
+           HOW WE WORK
+        ══════════════════════════ */
+        .how-section { padding-block: 100px; background: #fff; }
+
+        .steps-wrap {
+            margin-top: 64px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 28px;
+            position: relative;
+        }
+        .steps-wrap::before {
+            content: '';
+            position: absolute; top: 46px;
+            right: 12%; left: 12%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+            z-index: 0;
+        }
+        @media(max-width:768px){ .steps-wrap::before { display: none; } }
+
+        .step {
+            position: relative; z-index: 1;
+            background: var(--gray-50);
+            border: 1.5px solid #e2e8f0;
+            border-radius: var(--radius);
+            padding: 36px 20px 28px;
+            text-align: center;
+            transition: all .3s;
+        }
+        .step:hover {
+            background: var(--blue); border-color: var(--blue);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 44px rgba(26,86,219,.28);
+        }
+        .step:hover .step-num,
+        .step:hover .step-label,
+        .step:hover .step-text  { color: #fff; }
+        .step:hover .step-icon-box { background: rgba(255,255,255,.2); color: #fff; }
+
+        .step-num { font-size: 2.8rem; font-weight: 900; color: #dbeafe; line-height: 1; margin-bottom: 10px; transition: color .3s; }
+        .step-icon-box {
+            width: 62px; height: 62px; border-radius: 50%;
+            background: var(--blue-pale); color: var(--blue);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; margin: 0 auto 18px;
+            transition: all .3s;
+        }
+        .step-label { font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; transition: color .3s; }
+        .step-text  { font-size: .88rem; color: var(--gray-600); transition: color .3s; }
+
+        /* ══════════════════════════
+           WHY US
+        ══════════════════════════ */
+        .why-section { padding-block: 100px; background: var(--navy); position: relative; overflow: hidden; }
+        .why-section::before {
+            content: ''; position: absolute;
+            top: -180px; right: -180px;
+            width: 600px; height: 600px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(26,86,219,.25) 0%, transparent 65%);
+        }
+        .why-section::after {
+            content: ''; position: absolute;
+            bottom: -150px; left: -100px;
+            width: 500px; height: 500px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(37,211,102,.08) 0%, transparent 65%);
+        }
+
+        .why-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 72px; align-items: center;
+            position: relative; z-index: 1;
+        }
+        @media(max-width:860px){ .why-inner { grid-template-columns: 1fr; gap: 48px; } }
+
+        /* Visual panel */
+        .why-visual {
+            background: linear-gradient(145deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.02) 100%);
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 24px;
+            padding: 40px 32px;
+            display: flex; flex-direction: column; gap: 20px;
+        }
+        .why-visual-title {
+            font-size: 1.05rem; font-weight: 700; color: rgba(255,255,255,.5);
+            margin-bottom: 8px; letter-spacing: .05em; text-transform: uppercase;
+        }
+
+        /* stat rows */
+        .stat-row {
+            display: flex; align-items: center; gap: 16px;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 14px; padding: 18px 22px;
+            transition: all .3s;
+        }
+        .stat-row:hover { background: rgba(255,255,255,.1); transform: translateX(-4px); }
+        .stat-icon {
+            width: 50px; height: 50px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; flex-shrink: 0;
+        }
+        .si-blue  { background: rgba(59,130,246,.2);  color: #7bc8ff; }
+        .si-green { background: rgba(37,211,102,.15); color: #4ade80; }
+        .si-gold  { background: rgba(245,158,11,.15); color: #fbbf24; }
+        .stat-info strong { display: block; font-size: 1.5rem; font-weight: 900; color: #fff; }
+        .stat-info span { font-size: .85rem; color: rgba(255,255,255,.55); }
+
+        /* Why content */
+        .why-content .section-label { background: rgba(255,255,255,.1); color: #7bc8ff; }
+        .why-content .section-title { color: #fff; }
+        .why-content .section-sub   { color: rgba(255,255,255,.65); }
+
+        .why-points { margin-top: 36px; display: flex; flex-direction: column; gap: 18px; }
+        .why-point  { display: flex; align-items: flex-start; gap: 16px; }
+        .why-check  {
+            width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+            background: rgba(26,86,219,.3); border: 1px solid rgba(59,130,246,.4);
+            display: flex; align-items: center; justify-content: center;
+            color: #7bc8ff; font-size: .95rem; margin-top: 2px;
+        }
+        .why-pt-title { font-weight: 800; color: #fff; font-size: 1rem; margin-bottom: 4px; }
+        .why-pt-desc  { font-size: .88rem; color: rgba(255,255,255,.6); }
+
+        /* ══════════════════════════
+           MID CTA
+        ══════════════════════════ */
+        .mid-cta {
+            padding-block: 88px;
+            background: linear-gradient(135deg, #1a56db 0%, #1648c0 60%, #0f3ba8 100%);
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .mid-cta::before {
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .mid-cta-inner { position: relative; z-index: 1; }
+        .mid-cta h2 { font-size: clamp(1.7rem, 3.5vw, 2.5rem); font-weight: 900; color: #fff; margin-bottom: 14px; }
+        .mid-cta p  { color: rgba(255,255,255,.78); font-size: 1.05rem; max-width: 480px; margin: 0 auto 36px; }
+        .mid-cta-btns { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+        .btn-white { background: #fff; color: var(--blue); box-shadow: 0 8px 28px rgba(0,0,0,.15); }
+        .btn-white:hover { background: #f0f7ff; transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0,0,0,.2); }
+
+        @media(max-width:520px){ .mid-cta-btns { flex-direction: column; align-items: center; } }
+
+        /* ══════════════════════════
+           FOOTER
+        ══════════════════════════ */
+        .footer { background: #060f24; border-top: 1px solid rgba(255,255,255,.05); }
+        .footer-inner {
+            display: flex; flex-wrap: wrap;
+            align-items: center; justify-content: space-between;
+            gap: 24px; padding-block: 36px;
+        }
+        .footer-logo {
+            display: flex; align-items: center; gap: 10px;
+            font-weight: 900; font-size: 1.15rem; color: #fff;
+        }
+        .footer-logo-icon {
+            width: 38px; height: 38px; border-radius: 10px;
+            background: var(--blue); color: #fff;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .footer-links { display: flex; gap: 10px; flex-wrap: wrap; }
+        .footer-link {
+            display: flex; align-items: center; gap: 6px;
+            color: rgba(255,255,255,.55); font-size: .9rem;
+            padding: 8px 14px; border-radius: 8px; transition: all .2s;
+        }
+        .footer-link:hover { background: rgba(255,255,255,.07); color: #fff; }
+        .footer-copy { font-size: .8rem; color: rgba(255,255,255,.25); }
+
+        /* ══════════════════════════
+           FLOATING BTNS
+        ══════════════════════════ */
+        .floating-bar {
+            position: fixed; bottom: 24px; right: 20px;
+            display: flex; flex-direction: column; gap: 12px; z-index: 200;
+        }
+        .fab {
+            width: 58px; height: 58px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; color: #fff;
+            box-shadow: 0 6px 24px rgba(0,0,0,.22);
+            transition: transform .25s, box-shadow .25s;
+            position: relative;
+        }
+        .fab::before {
+            content: attr(data-tip);
+            position: absolute; right: calc(100% + 12px);
+            background: var(--navy); color: #fff;
+            font-size: .8rem; font-weight: 700;
+            padding: 6px 12px; border-radius: 8px;
+            white-space: nowrap; opacity: 0;
+            transform: translateX(6px); transition: all .25s;
+            pointer-events: none;
+        }
+        .fab:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(0,0,0,.28); }
+        .fab:hover::before { opacity: 1; transform: translateX(0); }
+        .fab-wa   { background: var(--wa); }
+        .fab-call { background: var(--blue); }
+        .fab-wa::after {
+            content: ''; position: absolute; inset: -5px; border-radius: 50%;
+            border: 3px solid var(--wa);
+            animation: ring 2.2s ease infinite;
+        }
+        @keyframes ring {
+            0%   { transform: scale(1); opacity: .65; }
+            100% { transform: scale(1.55); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══════════════════════════
+     NAVBAR
+══════════════════════════ -->
+<header class="navbar" id="navbar">
+    <div class="container">
+        <div class="navbar-inner">
+            <div class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-truck-moving"></i></div>
+                قط أغراض
+            </div>
+            <nav class="nav-btns">
+                <a href="tel:97975970" class="nav-btn nav-call">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>97975970</span>
+                </a>
+                <a href="https://wa.me/97975970" target="_blank" rel="noopener" class="nav-btn nav-wa-btn">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>واتساب</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- ══════════════════════════
+     HERO
+══════════════════════════ -->
+<section class="hero">
+    <div class="hero-blob blob-1"></div>
+    <div class="hero-blob blob-2"></div>
+    <div class="hero-grid"></div>
+
+    <div class="container">
+        <div class="hero-content">
+
+            <div class="hero-badge reveal">
+                <div class="dot"></div>
+                خدمة احترافية داخل المنزل
+            </div>
+
+            <h1 class="hero-title reveal d1">
+                نقل وتركيب أثاثك<br>
+                <span class="highlight">باحترافية حقيقية</span><br>
+                داخل منزلك
+            </h1>
+
+            <p class="hero-desc reveal d2">
+                فريق متخصص في فك، تركيب، تغليف، وقطّ الأثاث داخل المنزل. نحافظ على أثاثك كأنه أثاثنا.
+            </p>
+
+            <div class="hero-btns reveal d3">
+                <a href="tel:97975970" class="btn btn-primary">
+                    <i class="fa-solid fa-phone"></i> اتصل الآن
+                </a>
+                <a href="https://wa.me/97975970" target="_blank" rel="noopener" class="btn btn-wa">
+                    <i class="fa-brands fa-whatsapp"></i> تواصل واتساب
+                </a>
+            </div>
+
+            <div class="hero-stats reveal d4">
+                <div>
+                    <div class="hero-stat-num">+500<em>✓</em></div>
+                    <div class="hero-stat-lbl">عميل راضٍ</div>
+                </div>
+                <div>
+                    <div class="hero-stat-num">100<em>%</em></div>
+                    <div class="hero-stat-lbl">أثاث سليم مضمون</div>
+                </div>
+                <div>
+                    <div class="hero-stat-num">24<em>ساعة</em></div>
+                    <div class="hero-stat-lbl">خدمة متاحة</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- floating card -->
+    <div class="hero-card">
+        <div class="hero-card-icon"><i class="fa-brands fa-whatsapp"></i></div>
+        <div>
+            <strong>97975970</strong>
+            <span>تواصل الآن عبر واتساب</span>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════
+     SERVICES
+══════════════════════════ -->
+<section class="services-section">
+    <div class="container">
+        <div class="reveal">
+            <div class="section-label"><i class="fa-solid fa-star"></i> خدماتنا</div>
+            <h2 class="section-title">كل ما تحتاجه تحت سقف واحد</h2>
+            <p class="section-sub">نقدم خدمات متكاملة لنقل وتركيب وتغليف وقطّ الأثاث داخل منزلك بكل أمان وعناية.</p>
+        </div>
+
+        <div class="services-grid">
+
+            <!-- Card 1 -->
+            <div class="service-card reveal d1">
+                <div class="service-visual sv-1">
+                    <i class="service-visual-icon fa-solid fa-house"></i>
+                    <i class="service-visual-main fa-solid fa-couch"></i>
+                    <div class="service-tag">نقل عفش</div>
+                </div>
+                <div class="service-body">
+                    <div class="service-title">نقل العفش داخل المنزل</div>
+                    <p class="service-desc">نقل الأثاث من غرفة لأخرى بكل سهولة — مهما كان حجمه أو وزنه — بدون خدوش أو أضرار.</p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="service-card reveal d2">
+                <div class="service-visual sv-2">
+                    <i class="service-visual-icon fa-solid fa-bed"></i>
+                    <i class="service-visual-main fa-solid fa-screwdriver-wrench"></i>
+                    <div class="service-tag">فك وتركيب</div>
+                </div>
+                <div class="service-body">
+                    <div class="service-title">فك وتركيب الأثاث</div>
+                    <p class="service-desc">فك وتركيب غرف النوم، الدواليب، المطابخ، والمكاتب بدقة واحتراف عالي.</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="service-card reveal d3">
+                <div class="service-visual sv-3">
+                    <i class="service-visual-icon fa-solid fa-shield-halved"></i>
+                    <i class="service-visual-main fa-solid fa-box-open"></i>
+                    <div class="service-tag">تغليف</div>
+                </div>
+                <div class="service-body">
+                    <div class="service-title">تغليف الأثاث بالكرتون</div>
+                    <p class="service-desc">تغليف احترافي بمواد حماية عالية الجودة لضمان سلامة الأثاث الكاملة أثناء النقل.</p>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="service-card reveal d4">
+                <div class="service-visual sv-4">
+                    <i class="service-visual-icon fa-solid fa-boxes-stacked"></i>
+                    <i class="service-visual-main fa-solid fa-dolly"></i>
+                    <div class="service-tag">قطّ أغراض</div>
+                </div>
+                <div class="service-body">
+                    <div class="service-title">قطّ وتوصيل الأغراض</div>
+                    <p class="service-desc">نقل وتوصيل أي قطعة أو غرضة حسب طلبك، بسرعة وأمان ودون أي عناء.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════
+     HOW WE WORK
+══════════════════════════ -->
+<section class="how-section">
+    <div class="container">
+        <div class="reveal" style="text-align:center;">
+            <div class="section-label" style="margin-inline:auto;"><i class="fa-solid fa-list-check"></i> كيف نعمل؟</div>
+            <h2 class="section-title">أربع خطوات بسيطة وتنتهي</h2>
+            <p class="section-sub" style="margin-inline:auto;text-align:center;">نجعل تجربة نقل الأثاث سهلة وخالية من التوتر من بداية التواصل حتى الترتيب النهائي.</p>
+        </div>
+
+        <div class="steps-wrap">
+            <div class="step reveal d1">
+                <div class="step-num">01</div>
+                <div class="step-icon-box"><i class="fa-solid fa-phone"></i></div>
+                <div class="step-label">تواصل معنا</div>
+                <p class="step-text">اتصل أو راسلنا عبر واتساب وأخبرنا بما تحتاجه بالضبط.</p>
+            </div>
+            <div class="step reveal d2">
+                <div class="step-num">02</div>
+                <div class="step-icon-box"><i class="fa-solid fa-clipboard-list"></i></div>
+                <div class="step-label">تحديد المطلوب</div>
+                <p class="step-text">نسمع منك ونحدد نوع الخدمة والموعد المناسب لك.</p>
+            </div>
+            <div class="step reveal d3">
+                <div class="step-num">03</div>
+                <div class="step-icon-box"><i class="fa-solid fa-box"></i></div>
+                <div class="step-label">نقل وتغليف الأثاث</div>
+                <p class="step-text">يصل فريقنا ويبدأ بتغليف الأثاث ونقله بعناية فائقة.</p>
+            </div>
+            <div class="step reveal d4">
+                <div class="step-num">04</div>
+                <div class="step-icon-box"><i class="fa-solid fa-check-double"></i></div>
+                <div class="step-label">التركيب والترتيب</div>
+                <p class="step-text">نركّب الأثاث ونرتّبه في مكانه الجديد تمامًا كما تريد.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════
+     WHY US
+══════════════════════════ -->
+<section class="why-section">
+    <div class="container">
+        <div class="why-inner">
+
+            <!-- Visual panel -->
+            <div class="why-visual reveal reveal-l">
+                <div class="why-visual-title">أرقامنا تتحدث</div>
+
+                <div class="stat-row">
+                    <div class="stat-icon si-blue"><i class="fa-solid fa-users"></i></div>
+                    <div class="stat-info">
+                        <strong>+500</strong>
+                        <span>عميل راضٍ حتى الآن</span>
+                    </div>
+                </div>
+
+                <div class="stat-row">
+                    <div class="stat-icon si-green"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="stat-info">
+                        <strong>100%</strong>
+                        <span>حماية كاملة لأثاثك</span>
+                    </div>
+                </div>
+
+                <div class="stat-row">
+                    <div class="stat-icon si-gold"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="stat-info">
+                        <strong>سريع</strong>
+                        <span>ننجز العمل في وقت قياسي</span>
+                    </div>
+                </div>
+
+                <div class="stat-row">
+                    <div class="stat-icon si-blue"><i class="fa-solid fa-clock"></i></div>
+                    <div class="stat-info">
+                        <strong>24 ساعة</strong>
+                        <span>خدمة متاحة طوال اليوم</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="why-content reveal reveal-r">
+                <div class="section-label"><i class="fa-solid fa-trophy"></i> لماذا تختارنا؟</div>
+                <h2 class="section-title">جودة لا تجدها في أي مكان آخر</h2>
+                <p class="section-sub">لا نقدم مجرد خدمة نقل — بل تجربة متكاملة تنتهي بابتسامتك ورضاك الكامل.</p>
+
+                <div class="why-points">
+                    <div class="why-point">
+                        <div class="why-check"><i class="fa-solid fa-bolt"></i></div>
+                        <div>
+                            <div class="why-pt-title">✓ سرعة في التنفيذ</div>
+                            <p class="why-pt-desc">نعمل بكفاءة عالية وننجز المهمة في أقل وقت ممكن.</p>
+                        </div>
+                    </div>
+                    <div class="why-point">
+                        <div class="why-check"><i class="fa-solid fa-handshake"></i></div>
+                        <div>
+                            <div class="why-pt-title">✓ تعامل احترافي ومحترم</div>
+                            <p class="why-pt-desc">فريقنا مؤدب يعامل منزلك وأثاثك باحترام تام.</p>
+                        </div>
+                    </div>
+                    <div class="why-point">
+                        <div class="why-check"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div>
+                            <div class="why-pt-title">✓ حماية الأثاث أثناء النقل</div>
+                            <p class="why-pt-desc">تغليف شامل يضمن وصول أثاثك سليمًا 100%.</p>
+                        </div>
+                    </div>
+                    <div class="why-point">
+                        <div class="why-check"><i class="fa-solid fa-home"></i></div>
+                        <div>
+                            <div class="why-pt-title">✓ خدمة داخل المنزل متكاملة</div>
+                            <p class="why-pt-desc">من الفك والتغليف حتى التركيب والترتيب، كل شيء عندنا.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════
+     MID CTA
+══════════════════════════ -->
+<section class="mid-cta">
+    <div class="container">
+        <div class="mid-cta-inner reveal">
+            <h2>جاهز تتحرك؟ نحن هنا الحين! 🚀</h2>
+            <p>لا تتردد، تواصل معنا الآن وسنلبي طلبك في أسرع وقت.</p>
+            <div class="mid-cta-btns">
+                <a href="tel:97975970" class="btn btn-white">
+                    <i class="fa-solid fa-phone"></i> اتصل: 97975970
+                </a>
+                <a href="https://wa.me/97975970" target="_blank" rel="noopener" class="btn btn-wa">
+                    <i class="fa-brands fa-whatsapp"></i> راسلنا عبر واتساب
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════
+     FOOTER
+══════════════════════════ -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <div class="footer-logo-icon"><i class="fa-solid fa-truck-moving"></i></div>
+                قط أغراض
+            </div>
+            <div class="footer-links">
+                <a href="tel:97975970" class="footer-link">
+                    <i class="fa-solid fa-phone"></i> 97975970
+                </a>
+                <a href="https://wa.me/97975970" target="_blank" rel="noopener" class="footer-link">
+                    <i class="fa-brands fa-whatsapp"></i> واتساب
+                </a>
+            </div>
+            <div class="footer-copy">© 2026 جميع الحقوق محفوظة</div>
+        </div>
+    </div>
+</footer>
+
+<!-- ══════════════════════════
+     FLOATING BUTTONS
+══════════════════════════ -->
+<div class="floating-bar">
+    <a href="https://wa.me/97975970" target="_blank" rel="noopener"
+       class="fab fab-wa" data-tip="واتساب" aria-label="تواصل واتساب">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <a href="tel:97975970"
+       class="fab fab-call" data-tip="اتصل الآن" aria-label="اتصل بنا">
+        <i class="fa-solid fa-phone"></i>
+    </a>
+</div>
+
+<script>
+    /* Navbar shadow */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* Reveal on scroll */
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
