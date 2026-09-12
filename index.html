@@ -6,6 +6,36 @@
     <title>قط أغراض – نقل وتركيب أثاث احترافي داخل المنزل</title>
     <meta name="description" content="خدمات فك وتركيب وتغليف ونقل الأثاث داخل المنزل. اتصل الآن: 98001516">
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18402916394"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-18402916394');
+    </script>
+
+    <!-- Event snippet helper for Contact conversion -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion', {
+              'send_to': 'AW-18402916394/7ovvCL6j7OocEKrwmMdE',
+              'value': 1.0,
+              'currency': 'EGP',
+              'event_callback': callback
+          });
+        }
+        return false;
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -873,6 +903,22 @@
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     reveals.forEach(el => io.observe(el));
+
+    /* Google Ads Conversion Tracking (Call & WhatsApp Clicks) */
+    document.addEventListener('DOMContentLoaded', () => {
+        const contactLinks = document.querySelectorAll('a[href^="tel:"], a[href*="wa.me"], a[href*="whatsapp.com"]');
+        contactLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-18402916394/7ovvCL6j7OocEKrwmMdE',
+                        'value': 1.0,
+                        'currency': 'EGP'
+                    });
+                }
+            });
+        });
+    });
 </script>
 </body>
 </html>
